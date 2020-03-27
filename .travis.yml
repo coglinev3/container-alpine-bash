@@ -16,7 +16,7 @@ install:
   # Upgrade Docker and Python
   - sudo apt-get update
   - >
-  sudo apt-get -y -o Dpkg::Options::="--force-confnew" install
+    sudo apt-get -y -o Dpkg::Options::="--force-confnew" install
     docker-ce
     libssl-dev
     libffi-dev
