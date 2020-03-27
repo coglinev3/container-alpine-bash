@@ -16,9 +16,9 @@ install:
 
 before_script:
   # Steps befor running tests
-  - >
-    sudo mkdir -p /etc/ansible
-    && sudo bash -c 'echo -e "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts'
+  # - >
+  #   sudo mkdir -p /etc/ansible
+  #   && sudo bash -c 'echo -e "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts'
 
 script:
   # Run tests.
