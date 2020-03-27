@@ -1,5 +1,4 @@
 ---
-version: ~> 1.0
 language: python
 services: docker
 
@@ -12,24 +11,8 @@ env:
     - PLAYBOOK: alpine-3.11-bash.yml
 
 install:
-  - cat /etc/os-release
   # Upgrade Docker and Python
-  - sudo apt-get update
-  - >
-    sudo apt-get -y -o Dpkg::Options::="--force-confnew" install
-    docker-ce
-    python-pip
-    # libssl-dev
-    # libffi-dev
-    # python3
-    # python3-pip
-    # python3-setuptools
-    # python3-software-properties
-    # python3-wheel
-    # sudo
-  # Install test dependencies.
-  # - pip3 install ansible docker
-  - pip install ansible docker-py
+  - pip install molecule yamllint ansible-lint docker
 
 before_script:
   # Steps befor running tests
@@ -37,4 +20,4 @@ before_script:
 
 script:
   # Run tests.
-  - ansible-playbook ${PLAYBOOK} -i hosts
+  - ansible-playbook ${PLAYBOOK}
