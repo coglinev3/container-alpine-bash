@@ -23,5 +23,9 @@ before_script:
 script:
   # Build Alpine image
   - ansible-playbook alpine-${IMAGE_TAG}.yml
+
+  # Verify Bash is available in the container
+  - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm cat /etc/os-release
+
   # Verify Bash is available in the container
   - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm bash --version
