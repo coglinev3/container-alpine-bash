@@ -25,4 +25,4 @@ before_script:
 
 script:
   # Run tests.
-  - ansible-playbook ${PLAYBOOK}
+  - ansible-playbook ${PLAYBOOK} -i hosts
