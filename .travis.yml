@@ -18,16 +18,18 @@ install:
   - >
     sudo apt-get -y -o Dpkg::Options::="--force-confnew" install
     docker-ce
-    libssl-dev
-    libffi-dev
-    python3
-    python3-pip
-    python3-setuptools
-    python3-software-properties
-    python3-wheel
-    sudo
+    python-pip
+    # libssl-dev
+    # libffi-dev
+    # python3
+    # python3-pip
+    # python3-setuptools
+    # python3-software-properties
+    # python3-wheel
+    # sudo
   # Install test dependencies.
-  - pip3 install ansible docker
+  # - pip3 install ansible docker
+  - pip install ansible docker-py
 
 before_script:
   # Steps befor running tests
