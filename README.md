@@ -63,7 +63,7 @@ Ansible and Docker must be installed.
         state: absent
 ```
 
-> Note: Of course, the playbook shown is more complex than the a simple Dockerfile which installs the bash, but it demonstrates that container images can be build with Ansible. Many thanks to [Jeff Geerling](https://www.jeffgeerling.com/) for his introduction to Ansible with Docker in his book [Ansible for DevOps](https://www.jeffgeerling.com/project/ansible-devops).
+> Note: Of course, the playbook shown is more complex than a simple Dockerfile which installs the bash, but it demonstrates that container images can be build with Ansible. Many thanks to [Jeff Geerling](https://www.jeffgeerling.com/) for his introduction to Ansible with Docker in his book [Ansible for DevOps](https://www.jeffgeerling.com/project/ansible-devops).
 
 ## How to Build
 
@@ -79,6 +79,14 @@ ansible-playbook alpine-3.11-bash.yml
 
 I use these images as base images to build other Alpine Linux images with Python and Ansible to test my Ansible roles with these images.
 
+## Version
+
+Release: 1.0.0
+
+## License
+
+GNU Version 3
+
 ## Author
 
-Created in 2020 by Cogline.v3
+Created in 2020, by Cogline.v3.
