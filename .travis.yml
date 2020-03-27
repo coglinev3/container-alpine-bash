@@ -1,0 +1,27 @@
+---
+language: python
+services: docker
+
+env:
+  global:
+    - PROJECT_NAME: container-alpine
+  matrix:
+    - PLAYBOOK: alpine-3.9-bash.yml
+    - PLAYBOOK: alpine-3.10-bash.yml
+    - PLAYBOOK: alpine-3.11-bash.yml
+
+install:
+  - cat /etc/os-release
+  # Upgrade Docker and Python
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce python-pip
+  # Install test dependencies.
+  - pip install ansible docker
+
+before_script:
+  # Steps befor running tests
+  # - cd ../
+
+script:
+  # Run tests.
+  - ansible-playbook ${PLAYBOOK}
