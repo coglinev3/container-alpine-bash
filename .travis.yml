@@ -6,9 +6,9 @@ env:
   global:
     - IMAGE_NAME: coglinev3/alpine
   matrix:
-    - IMAGE_TAG: alpine-3.9-bash.yml
-    - IMAGE_TAG: alpine-3.10-bash.yml
-    - IMAGE_TAG: alpine-3.11-bash.yml
+    - IMAGE_TAG: 3.9-bash
+    - IMAGE_TAG: 3.10-bash
+    - IMAGE_TAG: 3.11-bash
 
 install:
   # Upgrade Docker and Python
