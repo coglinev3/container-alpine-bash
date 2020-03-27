@@ -12,13 +12,7 @@ env:
 
 install:
   # Upgrade Docker and Python
-  - pip install molecule yamllint ansible-lint docker
-
-before_script:
-  # Steps befor running tests
-  # - >
-  #   sudo mkdir -p /etc/ansible
-  #   && sudo bash -c 'echo -e "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts'
+  - pip install molecule docker
 
 script:
   # Build Alpine image
