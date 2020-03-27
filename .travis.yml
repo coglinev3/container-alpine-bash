@@ -4,24 +4,22 @@ services: docker
 
 env:
   global:
-    - PROJECT_NAME: container-alpine
+    - IMAGE_NAME: coglinev3/alpine
   matrix:
-    - PLAYBOOK: alpine-3.9-bash.yml
-    - PLAYBOOK: alpine-3.10-bash.yml
-    - PLAYBOOK: alpine-3.11-bash.yml
+    - IMAGE_TAG: 3.9-bash
+    - IMAGE_TAG: 3.10-bash
+    - IMAGE_TAG: 3.11-bash
 
 install:
-  - cat /etc/os-release
   # Upgrade Docker and Python
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce python-pip
-  # Install test dependencies.
-  - pip install ansible docker
-
-before_script:
-  # Steps befor running tests
-  # - cd ../
+  - pip install molecule docker
 
 script:
-  # Run tests.
-  - ansible-playbook ${PLAYBOOK}
+  # Build Alpine image
+  - ansible-playbook alpine-${IMAGE_TAG}.yml
+
+  # Verify Bash is available in the container
+  - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm cat /etc/os-release
+
+  # Verify Bash is available in the container
+  - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm bash --version
