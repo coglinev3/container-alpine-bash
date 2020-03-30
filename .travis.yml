@@ -1,25 +1,58 @@
 ---
-language: python
-services: docker
+dist: bionic
+addons:
+  apt:
+    packages:
+    - docker-ce
+    - libssl-dev
+    - libffi-dev
+    - python3
+    - python3-pip
+    - python3-setuptools
+    - python3-software-properties
+    - python3-wheel
+
+language: generic
+
+services:
+  - docker
 
 env:
   global:
     - IMAGE_NAME: coglinev3/alpine
   matrix:
-    - IMAGE_TAG: 3.9-bash
-    - IMAGE_TAG: 3.10-bash
     - IMAGE_TAG: 3.11-bash
+      IMAGE_ALTERNATE_TAG: latest
+    - IMAGE_TAG: 3.10-bash
+    - IMAGE_TAG: 3.9-bash
 
 install:
-  # Upgrade Docker and Python
-  - pip install molecule docker
+  # Install Ansible and Python Docker Module
+  - pip3 install ansible docker
+
+before_script:
+  # Show docker version
+  - docker --version
+  # Configure Ansible
+  - cp .travis/ansible.cfg ~/.ansible.cfg
+  - mkdir -p ~/.ansible && cp .travis/hosts ~/.ansible
+  # Show Ansible version
+  - ansible --version
 
 script:
-  # Build Alpine image
+  # Build Docker image
   - ansible-playbook alpine-${IMAGE_TAG}.yml
 
-  # Verify Bash is available in the container
-  - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm cat /etc/os-release
+after_success:
+  # Verify container OS release
+  - docker run -it --rm ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm cat /etc/os-release
 
   # Verify Bash is available in the container
-  - docker run -it  ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm bash --version
+  - docker run -it --rm ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm bash --version
+
+deploy:
+  provider: script
+  script: bash scripts/docker_push
+  cleanup: false
+  on:
+    branch: master
