@@ -53,7 +53,6 @@ after_success:
 deploy:
   provider: script
   script: bash scripts/docker_push
-  skip_cleanup: true
+  cleanup: false
   on:
-    # branch: master
     branch: master
