@@ -61,4 +61,4 @@ deploy:
   script: bash scripts/docker_push
   cleanup: false
   on:
-    branch: master
+    branch: develop
