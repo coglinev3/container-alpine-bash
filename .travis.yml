@@ -12,14 +12,15 @@ addons:
     - python3-software-properties
     - python3-wheel
 
-language: generic
+language: minimal
 
 services:
   - docker
 
 env:
   global:
-    - IMAGE_NAME: coglinev3/alpine
+    - IMAGE_NAMESPACE: coglinev3
+    - IMAGE_NAME: alpine
   matrix:
     - IMAGE_TAG: 3.11-bash
       IMAGE_ALTERNATE_TAG: latest
@@ -31,8 +32,6 @@ install:
   - pip3 install ansible docker
 
 before_script:
-  # Show docker version
-  - docker --version
   # Configure Ansible
   - cp .travis/ansible.cfg ~/.ansible.cfg
   - mkdir -p ~/.ansible && cp .travis/hosts ~/.ansible
@@ -44,11 +43,18 @@ script:
   - ansible-playbook alpine-${IMAGE_TAG}.yml
 
 after_success:
-  # Verify container OS release
-  - docker run -it --rm ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm cat /etc/os-release
-
+  - >
+    echo Start a container from image
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
+    && cid=$(docker run -d --rm --name check_python
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
+    tail -f /dev/null)
+  # show container os-release
+  - docker exec ${cid} env TERM=xterm cat /etc/os-release
   # Verify Bash is available in the container
-  - docker run -it --rm ${IMAGE_NAME}:${IMAGE_TAG} env TERM=xterm bash --version
+  - docker exec ${cid} env TERM=xterm bash --version
+  # Stop the container
+  - docker stop ${cid}
 
 deploy:
   provider: script
