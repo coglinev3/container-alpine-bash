@@ -3,12 +3,14 @@
   connection: local
   gather_facts: no
   vars:
+    alpine_major_version: "{{ lookup('env','ALPINE_MAJOR_VERSION') | default('3', true) }}"
+    alpine_minor_version: "{{ lookup('env','ALPINE_MINOR_VERSION') | default('12', true) }}"
     base_image: alpine
-    base_image_tag: "3.11"
-    container_name: alpine_311_bash
+    base_image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}"
+    container_name: "alpine_{{ alpine_major_version }}{{ alpine_minor_version }}_bash"
     image_namespace: coglinev3
     image_name: alpine
-    image_tag: 3.11-bash
+    image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}-bash"
   pre_tasks:
     - name: Make the latest version of the base image available locally.
       docker_image:

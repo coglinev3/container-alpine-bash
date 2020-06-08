@@ -21,11 +21,13 @@ env:
   global:
     - IMAGE_NAMESPACE: coglinev3
     - IMAGE_NAME: alpine
+    - ALPINE_MAJOR_VERSION: 3
   matrix:
-    - IMAGE_TAG: 3.11-bash
+    - ALPINE_MINOR_VERSION: 12
       IMAGE_ALTERNATE_TAG: latest
-    - IMAGE_TAG: 3.10-bash
-    - IMAGE_TAG: 3.9-bash
+    - ALPINE_MINOR_VERSION: 11
+    - ALPINE_MINOR_VERSION: 10
+    - ALPINE_MINOR_VERSION: 9
 
 install:
   # Install Ansible and Python Docker Module
@@ -40,14 +42,14 @@ before_script:
 
 script:
   # Build Docker image
-  - ansible-playbook alpine-${IMAGE_TAG}.yml
+  - ansible-playbook container-alpine.yml
 
 after_success:
   - >
     echo Start a container from image
-    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}-bash
     && cid=$(docker run -d --rm --name check_python
-    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}-bash
     tail -f /dev/null)
   # show container os-release
   - docker exec ${cid} env TERM=xterm cat /etc/os-release
