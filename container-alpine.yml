@@ -10,7 +10,7 @@
     container_name: "alpine_{{ alpine_major_version }}{{ alpine_minor_version }}_bash"
     image_namespace: coglinev3
     image_name: alpine
-    image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}-bash"
+    image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}"
   pre_tasks:
     - name: Make the latest version of the base image available locally.
       docker_image:

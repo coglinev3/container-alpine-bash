@@ -47,9 +47,9 @@ script:
 after_success:
   - >
     echo Start a container from image
-    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}-bash
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}
     && cid=$(docker run -d --rm --name check_python
-    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}-bash
+    ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}
     tail -f /dev/null)
   # show container os-release
   - docker exec ${cid} env TERM=xterm cat /etc/os-release
