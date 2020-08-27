@@ -81,11 +81,11 @@ I use these images as base images to build other Alpine Linux images with Python
 
 ## Version
 
-Release: 1.2.2
+Release: 1.2.3
 
 ## License
 
-GNU Version 3
+GNU GPL Version 3
 
 ## Author
 
