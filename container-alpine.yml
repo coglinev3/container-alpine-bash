@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     alpine_major_version: "{{ lookup('env','ALPINE_MAJOR_VERSION') | default('3', true) }}"
-    alpine_minor_version: "{{ lookup('env','ALPINE_MINOR_VERSION') | default('12', true) }}"
+    alpine_minor_version: "{{ lookup('env','ALPINE_MINOR_VERSION') | default('13', true) }}"
     base_image: alpine
     base_image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}"
     container_name: "alpine_{{ alpine_major_version }}{{ alpine_minor_version }}_bash"
