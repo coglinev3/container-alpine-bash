@@ -21,6 +21,7 @@
       docker_container:
         image: '{{ base_image }}:{{ base_image_tag }}'
         name: '{{ container_name }}'
+        container_default_behavior: no_defaults
         command: sleep 1h
     - name: Add the newly created container to the inventory.
       add_host:
@@ -40,3 +41,4 @@
       docker_container:
         name: '{{ container_name }}'
         state: absent
+        container_default_behavior: no_defaults
