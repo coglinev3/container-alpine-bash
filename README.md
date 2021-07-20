@@ -9,7 +9,8 @@ These Alpine images were built exclusively with Ansible without the use of Docke
 
 ## Tags
 
-  - `3.13`, `latest`: Alpine Linux version 3.13
+  - `3.14`, `latest`: Alpine Linux version 3.14
+  - `3.13`, Alpine Linux version 3.13
   - `3.12`: Alpine Linux version 3.12
   - `3.11`: Alpine Linux version 3.11
   - `3.10`: Alpine Linux version 3.10
