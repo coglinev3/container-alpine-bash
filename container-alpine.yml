@@ -1,25 +1,22 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: "no"
   vars:
-    alpine_major_version: "{{ lookup('env','ALPINE_MAJOR_VERSION') | default('3', true) }}"
-    alpine_minor_version: "{{ lookup('env','ALPINE_MINOR_VERSION') | default('13', true) }}"
+    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.14', true) }}"
     base_image: alpine
-    base_image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}"
-    container_name: "alpine_{{ alpine_major_version }}{{ alpine_minor_version }}_bash"
+    container_name: "alpine_bash"
     image_namespace: coglinev3
     image_name: alpine
-    image_tag: "{{ alpine_major_version }}.{{ alpine_minor_version }}"
   pre_tasks:
     - name: Make the latest version of the base image available locally.
       docker_image:
-        name: '{{ base_image }}:{{ base_image_tag }}'
+        name: '{{ base_image }}:{{ alpine_version }}'
         source: pull
         force_source: true
     - name: Create the Docker container.
       docker_container:
-        image: '{{ base_image }}:{{ base_image_tag }}'
+        image: '{{ base_image }}:{{ alpine_version }}'
         name: '{{ container_name }}'
         container_default_behavior: no_defaults
         command: sleep 1h
@@ -36,7 +33,7 @@
       command: >
         docker commit
         --author "Cogline.v3"
-        {{ container_name }} {{ image_namespace }}/{{ image_name }}:{{ image_tag }}
+        {{ container_name }} {{ image_namespace }}/{{ image_name }}:{{ alpine_version }}
     - name: Remove the container.
       docker_container:
         name: '{{ container_name }}'

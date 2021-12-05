@@ -1,7 +1,6 @@
 # Alpine Images with BASH for use with Ansible Molecule
 
-[![Build Status](https://travis-ci.org/coglinev3/container-alpine-bash.svg?branch=master)](https://travis-ci.org/coglinev3/container-alpine-bash)
-
+[![Build](https://github.com/coglinev3/container-alpine-bash/actions/workflows/build.yml/badge.svg)](https://github.com/coglinev3/container-alpine-bash/actions/workflows/build.yml)
 
 In order to test [Ansible](https://docs.ansible.com/ansible/latest/index.html "Ansible Documentation") roles with the help of [Ansible Molecule](https://molecule.readthedocs.io/en/latest/ "Ansible Molecule Documentation"), Docker images are required that contain a bash shell. By default, Alpine Images only contain the Bourne shell `sh`. That's why the standard Alpine Images have been expanded to include the Bourne-again shell `bash`.
 

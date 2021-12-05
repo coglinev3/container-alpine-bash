@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
 # Login to docker.io
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 # push the image
-docker push ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION}
+docker push ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_VERSION}
 
 # push alternate tag if available
 if ! [ -z $IMAGE_ALTERNATE_TAG ]; then
-  docker tag ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_MAJOR_VERSION}.${ALPINE_MINOR_VERSION} \
+  docker tag ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${ALPINE_VERSION} \
     ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_ALTERNATE_TAG};
   docker push ${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_ALTERNATE_TAG};
 fi
 
 # Logout from docker.io
-docker logout
+#docker logout
