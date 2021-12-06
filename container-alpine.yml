@@ -3,7 +3,7 @@
   connection: local
   gather_facts: "no"
   vars:
-    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.14', true) }}"
+    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.15', true) }}"
     base_image: alpine
     container_name: "alpine_bash"
     image_namespace: coglinev3
