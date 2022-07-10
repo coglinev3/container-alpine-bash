@@ -84,7 +84,7 @@ I use these images as base images to build other Alpine Linux images with Python
 
 ## Version
 
-Release: 1.5.0
+Release: 1.6.0
 
 ## License
 
