@@ -50,8 +50,9 @@ jobs:
           - "3.13"
           - "3.14"
           - "3.15"
+          - "3.16"
         include:
-          - alpine_version: 3.15
+          - alpine_version: 3.16
             alternate_tag: latest
 
     steps:
@@ -63,8 +64,21 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Set Ansible environment variables
+        run: >
+          echo "ANSIBLE_PYTHON_INTERPRETER=${pythonLocation}/bin/python3" >> $GITHUB_ENV
+
       - name: Install Ansible
         run: pip3 install --upgrade ansible docker
+
+      - name: Create Ansible roles directory
+        run: mkdir -p ~/.ansible/roles
+
+      - name: Configure Ansible
+        run: cp .github/ansible.cfg ~/.ansible.cfg
+
+      - name: Set up Ansible inventory file
+        run: cp .github/hosts ~/.ansible/hosts
 
       - name: Show Ansible version
         run: ansible --version
@@ -112,7 +126,9 @@ jobs:
   # Update Docker Hub description
   dockerHubDescription:
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - lint
+      - build
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Check out the codebase.
