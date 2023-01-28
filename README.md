@@ -82,7 +82,7 @@ I use these images as base images to build other Alpine Linux images with Python
 
 ## Version
 
-Release: 1.7.0
+Release: 1.8.0
 
 ## License
 
@@ -90,4 +90,4 @@ GNU GPL Version 3
 
 ## Author
 
-Created in 2020, by Cogline.v3.
+Copyright &copy; 2023 Cogline.v3.
