@@ -83,7 +83,7 @@ I use these images as base images to build other Alpine Linux images with Python
 
 ## Version
 
-Release: 1.8.2
+Release: 1.9.0
 
 ## License
 
