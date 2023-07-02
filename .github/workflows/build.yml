@@ -25,12 +25,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install test dependencies.
-        run: pip3 install yamllint
+      - name: Install lint dependencies.
+        run: python3 -m pip install --upgrade --user ansible ansible-lint yamllint
 
-      - name: Lint code.
-        run: |
-          yamllint .
+      - name: Lint code with yamllint.
+        run: yamllint .
+
+      - name: Lint code with ansible-lint.
+        run: ansible-lint
 
   # Build the images and push them to Docker repository.
   build:
@@ -49,8 +51,9 @@ jobs:
           - "3.15"
           - "3.16"
           - "3.17"
+          - "3.18"
         include:
-          - alpine_version: 3.16
+          - alpine_version: 3.18
             alternate_tag: latest
 
     steps:
