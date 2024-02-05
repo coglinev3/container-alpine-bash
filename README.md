@@ -104,7 +104,7 @@ I use these images as base images to build other Alpine Linux images with Python
 
 ## Version
 
-Release: 1.9.0
+Release: 1.10.0
 
 ## License
 
@@ -112,4 +112,4 @@ GNU GPL Version 3
 
 ## Author
 
-Copyright &copy; 2023 Cogline.v3.
+Copyright &copy; 2024 Cogline.v3.
