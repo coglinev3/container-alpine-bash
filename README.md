@@ -10,11 +10,13 @@ default, Alpine Images only contain the Bourne shell `sh`. That's why the
 standard Alpine Images have been expanded to include the Bourne-again shell
 `bash`.
 
-These Alpine images were built exclusively with Ansible without the use of Dockerfiles, see the example Ansible playbook below. 
+These Alpine images were built exclusively with Ansible without the use of
+Dockerfiles, see the example Ansible playbook below. 
 
 ## Tags
 
-  - `3.18`, `latest`: Alpine Linux version 3.18
+  - `3.19`, `latest`: Alpine Linux version 3.19
+  - `3.18`, Alpine Linux version 3.18
   - `3.17`, Alpine Linux version 3.17
   - `3.16`, Alpine Linux version 3.16
   - `3.15`, Alpine Linux version 3.15
@@ -35,7 +37,7 @@ Ansible and Docker must be installed.
   connection: local
   gather_facts: false
   vars:
-    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.18', true) }}"
+    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.19', true) }}"
     base_image: alpine
     container_name: "alpine_bash"
     image_namespace: coglinev3
