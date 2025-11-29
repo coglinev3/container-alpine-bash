@@ -15,7 +15,9 @@ Dockerfiles, see the example Ansible playbook below.
 
 ## Tags
 
-  - `3.20`, `latest`: Alpine Linux version 3.20
+  - `3.22`, `latest`: Alpine Linux version 3.22
+  - `3.21`, Alpine Linux version 3.21
+  - `3.20`, Alpine Linux version 3.20
   - `3.19`, Alpine Linux version 3.19
   - `3.18`, Alpine Linux version 3.18
   - `3.17`, Alpine Linux version 3.17
