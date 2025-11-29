@@ -25,7 +25,6 @@ Dockerfiles, see the example Ansible playbook below.
   - `3.15`, Alpine Linux version 3.15
   - `3.14`, Alpine Linux version 3.14
   - `3.13`, Alpine Linux version 3.13
-  - `3.12`: Alpine Linux version 3.12
 
 ## Requirements
 
@@ -40,7 +39,7 @@ Ansible and Docker must be installed.
   connection: local
   gather_facts: false
   vars:
-    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.19', true) }}"
+    alpine_version: "{{ lookup('env','ALPINE_VERSION') | default('3.22', true) }}"
     base_image: alpine
     container_name: "alpine_bash"
     image_namespace: coglinev3
@@ -98,7 +97,7 @@ You can build any of these Alpine Images as follows:
 ```sh
 git clone https://github.com/coglinev3/container-alpine-bash.git
 cd container-alpine-bash
-ALPINE_VERSION=3.17 ansible-playbook container-alpine.yml
+ALPINE_VERSION=3.21 ansible-playbook container-alpine.yml
 ```
 
 ## Notes
